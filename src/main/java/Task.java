@@ -11,6 +11,10 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718");
     }
 
+    public String toString(){
+        return "[" + this.getStatus() + "] " + this.description;
+    }
+
     public void markAsDone(){
         this.isDone = true;
     }
