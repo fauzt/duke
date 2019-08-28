@@ -7,26 +7,28 @@ public class DateFormatter {
         String[] tokens = s.split("\\s+");
 
         date = tokens[0];
-        String day = date.split("/")[0];
+        int day_int = Integer.parseInt(date.split("/")[0]);
+        String day;
         String month = date.split("/")[1];
         String year = date.split("/")[2];
 
-        switch(day){
-            case "1":
-            case "21":
-            case "31":
-                day = day + "st";
+
+        switch(day_int){
+            case 1:
+            case 21:
+            case 31:
+                day = day_int + "st";
                 break;
-            case "2":
-            case "22":
-                day = day + "nd";
+            case 2:
+            case 22:
+                day = day_int + "nd";
                 break;
-            case "3":
-            case "23":
-                day = day + "rd";
+            case 3:
+            case 23:
+                day = day_int + "rd";
                 break;
             default:
-                day = day + "th";
+                day = day_int + "th";
 
         }
 
