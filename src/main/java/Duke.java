@@ -1,9 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    private Task[] list = new Task[100];
-    private int count = 0;
+    private ArrayList<Task> list;
+
+    public Duke(){
+        this.list = new ArrayList<Task>();
+    }
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -20,6 +24,14 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         String output = "";
 
+        try {
+            ArrayList<Task> temp = DukeStorage.readFile();
+            if (temp != null){
+                myDuke.list = temp;
+            }
+        } catch (DukeException e){
+            System.out.println(e);
+        }
 
         do{
             output = input.nextLine();
@@ -31,6 +43,12 @@ public class Duke {
 
         }while(!output.equals("bye"));
 
+        try {
+            DukeStorage.writeFile(myDuke.list);
+        } catch(DukeException e){
+            System.out.println(e);
+        }
+
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -41,8 +59,8 @@ public class Duke {
         switch(tokens[0]){
             case "list":
                 System.out.println("Here are the tasks in your list:");
-                for(int x = 0; x < count; x++) {
-                    System.out.println( (x+1) + "." + list[x].toString() );
+                for(int x = 0; x < list.size(); x++) {
+                    System.out.println( (x+1) + "." + list.get(x).toString() );
                 }
                 System.out.println();
                 break;
@@ -50,9 +68,9 @@ public class Duke {
                 break;
             case "done":
                 int item = Integer.parseInt(tokens[1]) - 1;
-                list[item].markAsDone();
+                list.get(item).markAsDone();
                 System.out.println("Nice! I've marked this task as done:\n" +
-                        list[item].toString() + "\n");
+                        list.get(item).toString() + "\n");
                 break;
             case "todo":
                 if (tokens.length == 1){
@@ -65,11 +83,11 @@ public class Duke {
                         todo = todo + " " + tokens[t_token];
                         t_token++;
                     }
-                    list[count] = new Todo(todo);
+                    Task t = new Todo(todo);
+                    list.add(t);
                     System.out.println("Got it. I've added this task:\n" +
-                            "  " + list[count].toString());
-                    count++;
-                    System.out.println(("Now you have " + count + " tasks in the list.\n"));
+                            "  " + t.toString());
+                    System.out.println(("Now you have " + list.size() + " tasks in the list.\n"));
                 }
                 break;
             case "deadline":
@@ -87,11 +105,11 @@ public class Duke {
                     d_token++;
                 }
 
-                list[count] = new Deadline(deadline, by);
+                Task d = new Deadline(deadline, by);
+                list.add(d);
                 System.out.println("Got it. I've added this task:\n" +
-                        "  " + list[count].toString());
-                count++;
-                System.out.println(("Now you have " + count + " tasks in the list.\n"));
+                        "  " + d.toString());
+                System.out.println(("Now you have " + list.size() + " tasks in the list.\n"));
                 break;
             case "event":
                 String event = tokens[1], at = "";
@@ -108,11 +126,11 @@ public class Duke {
                     e_token++;
                 }
 
-                list[count] = new Event(event, at);
+                Task e = new Event(event, at);
+                list.add(e);
                 System.out.println("Got it. I've added this task:\n" +
-                        "  " + list[count].toString());
-                count++;
-                System.out.println(("Now you have " + count + " tasks in the list.\n"));
+                        "  " + e.toString());
+                System.out.println(("Now you have " + list.size() + " tasks in the list.\n"));
                 break;
             default:
                 throw new DukeException("Error! Unrecognisable command inputted");
