@@ -105,6 +105,10 @@ public class Duke {
                     d_token++;
                 }
 
+                if (by.contains("/")){
+                    by = DateFormatter.formatDate(by);
+                }
+
                 Task d = new Deadline(deadline, by);
                 list.add(d);
                 System.out.println("Got it. I've added this task:\n" +
@@ -124,6 +128,10 @@ public class Duke {
                 while(e_token < tokens.length){
                     at = at + " " + tokens[e_token];
                     e_token++;
+                }
+
+                if (at.contains("/")){
+                    at = DateFormatter.formatDate(at);
                 }
 
                 Task e = new Event(event, at);
