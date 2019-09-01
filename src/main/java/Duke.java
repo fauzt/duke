@@ -140,6 +140,18 @@ public class Duke {
                         "  " + e.toString());
                 System.out.println(("Now you have " + list.size() + " tasks in the list.\n"));
                 break;
+            case "find":
+                String f = output.replaceFirst("find ", "");
+                int count = 0;
+
+                System.out.println("Here are the matching tasks in your list:");
+                for (int x = 0; x < list.size(); x++){
+                    if (list.get(x).description.contains(f)){
+                        count++;
+                        System.out.println(count + "." + list.get(x).toString());
+                    }
+                }
+                break;
             default:
                 throw new DukeException("Error! Unrecognisable command inputted");
 
