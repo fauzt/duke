@@ -140,6 +140,14 @@ public class Duke {
                         "  " + e.toString());
                 System.out.println(("Now you have " + list.size() + " tasks in the list.\n"));
                 break;
+            case "delete":
+                int del = Integer.parseInt(tokens[1]) - 1;
+
+                System.out.println("Noted. I removed this task:\n" +
+                        list.get(del).toString());
+                list.remove(del);
+                System.out.println(("Now you have " + list.size() + " tasks in the list"));
+                break;
             default:
                 throw new DukeException("Error! Unrecognisable command inputted");
 
