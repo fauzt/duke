@@ -1,0 +1,10 @@
+todo one two
+deadline homework /by 10pm
+event appointment /at Monday
+done 3
+list
+delete 3
+delete 2
+delete 1
+list
+bye
