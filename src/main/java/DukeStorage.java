@@ -3,11 +3,16 @@ import java.util.ArrayList;
 
 public class DukeStorage {
 
-    public static ArrayList<Task> readFile() throws DukeException{
-        File dir = new File("/data");
+    protected static File dir;
+
+    public DukeStorage(String filepath){
+        dir = new File(filepath);
         dir.mkdirs();
+    }
+
+    public static ArrayList<Task> readFile() throws DukeException{
         try{
-            FileInputStream fis = new FileInputStream("/data/list.ser");
+            FileInputStream fis = new FileInputStream(dir);
             ObjectInputStream ois = new ObjectInputStream(fis);
             ArrayList<Task> list = (ArrayList<Task>) ois.readObject();
             ois.close();
@@ -21,10 +26,8 @@ public class DukeStorage {
     }
 
     public static void writeFile(ArrayList<Task> list) throws DukeException{
-        File dir = new File("/data");
-        dir.mkdirs();
         try {
-            FileOutputStream fout = new FileOutputStream("/data/list.ser");
+            FileOutputStream fout = new FileOutputStream(dir);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(list);
             oos.close();

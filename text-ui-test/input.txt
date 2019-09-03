@@ -1,8 +1,9 @@
 todo one two
 deadline homework /by 10pm
-event appointment /at Monday
+event doctor appointment /at 02/11/2019 1500
 done 3
 list
+find appointment
 delete 3
 delete 2
 delete 1

@@ -63,8 +63,6 @@ public class DateFormatter {
             }
         }
 
-        System.out.println(date);
         return date;
-
     }
 }
