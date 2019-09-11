@@ -16,7 +16,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("/data/list.ser").run();
+        new Duke("data/list.ser").run();
 
         }
 

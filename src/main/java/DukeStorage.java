@@ -7,7 +7,7 @@ public class DukeStorage {
 
     public DukeStorage(String filepath){
         dir = new File(filepath);
-        dir.mkdirs();
+        dir.getParentFile().mkdirs();
     }
 
     public static ArrayList<Task> readFile() throws DukeException{
