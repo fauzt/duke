@@ -1,4 +1,16 @@
+
+/**
+* This method handles the operation to format the user-inputted date/time into a standardised format
+*/
+
 public class DateFormatter {
+
+    /**
+     * This method formats the user-inputted date/time into a standardised format
+     * @param s This is the inputted string to be parsed into a standardised format
+     * @return Returns the formatted date/time as a string
+     */
+
     public static String formatDate(String s){
         String date, time;
         String[] month_name = {"January", "February", "March", "April", "May", "June", "July", "August",

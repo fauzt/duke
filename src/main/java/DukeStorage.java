@@ -1,14 +1,28 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class DukeStorage {
+/**
+* This class handles the data storage and handling function of Duke.
+*/
 
+public class DukeStorage {
     protected static File dir;
+
+    /**
+     * This constructor initialises the file to be read/written and create the directory if it doesn't exist yet.
+     * @param filepath This string is the designated file directory path for the data to be stored in.
+     */
 
     public DukeStorage(String filepath){
         dir = new File(filepath);
         dir.getParentFile().mkdirs();
     }
+
+        /**
+         * This method retrieves and read the data from the initialised file path.
+         * @return The method returns the list data if found
+         * @throws DukeException
+         */
 
     public static ArrayList<Task> readFile() throws DukeException{
         try{
@@ -24,6 +38,12 @@ public class DukeStorage {
         }
 
     }
+
+        /**
+         * This method writes the data after user modifications into the file.
+         * @param list This is the data that needs to be written to the file
+         * @throws DukeException
+         */
 
     public static void writeFile(ArrayList<Task> list) throws DukeException{
         try {

@@ -1,4 +1,18 @@
+/**
+ * This class handles the parsing operations of Duke and make sense of the user inputs.
+ * It will then execute the associated commands and return a display message back to the user.
+ */
+
+
 public class Parser {
+
+    /**
+     * This method parse the inputted string into information that Duke can understand
+     * so it can executes the appropriate function.
+     * @param s This is the string that the user has typed into the CLI.
+     * @param tasks This is the data to be manipulated by the user commands.
+     * @throws DukeException
+     */
 
     public static void parse(String s, TaskList tasks) throws DukeException{
         String[] tokens = s.split("\\s+");
